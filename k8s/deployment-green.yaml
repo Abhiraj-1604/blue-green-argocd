@@ -19,6 +19,8 @@ spec:
     spec:
       containers:
         - name: app
-          image: nginx:1.21
+          image: hashicorp/http-echo
+          args:
+            - "-text=Hello from GREEN"
           ports:
-            - containerPort: 80
+            - containerPort: 5678
