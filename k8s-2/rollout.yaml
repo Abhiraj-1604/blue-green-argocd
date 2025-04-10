@@ -7,11 +7,8 @@ spec:
   strategy:
     canary:
       steps:
-        - setWeight: 10     # 10% to new version, 90% stays on old
-        - pause: { duration: 60 }  # Wait 60s
-        - setWeight: 50
-        - pause: { duration: 60 }
-        - setWeight: 100    # Full promotion
+        - setWeight: 10
+        - pause: {duration: 300s}  # pause at 10% for observation
   selector:
     matchLabels:
       app: myapp
