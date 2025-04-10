@@ -3,12 +3,15 @@ kind: Rollout
 metadata:
   name: myapp
 spec:
-  replicas: 2
+  replicas: 5
   strategy:
-    blueGreen:
-      activeService: myapp-active
-      previewService: myapp-preview
-      autoPromotionEnabled: false  # Manual switch
+    canary:
+      steps:
+        - setWeight: 10     # 10% to new version, 90% stays on old
+        - pause: { duration: 60 }  # Wait 60s
+        - setWeight: 50
+        - pause: { duration: 60 }
+        - setWeight: 100    # Full promotion
   selector:
     matchLabels:
       app: myapp
@@ -19,6 +22,6 @@ spec:
     spec:
       containers:
         - name: myapp
-          image: nginx:1.21
+          image: nginx:1.21  # New version here
           ports:
             - containerPort: 80
