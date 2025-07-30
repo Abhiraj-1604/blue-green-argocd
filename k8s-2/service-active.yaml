@@ -1,10 +1,11 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: myapp-active
+  name: nginx-rollout
+  namespace: default
 spec:
   selector:
-    app: myapp
+    app: nginx-rollout
   ports:
-    - port: 80
-      targetPort: 80
+  - port: 80
+    targetPort: 80
