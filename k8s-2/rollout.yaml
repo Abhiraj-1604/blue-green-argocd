@@ -16,7 +16,7 @@ spec:
       terminationGracePeriodSeconds: 30
       containers:
       - name: nginx
-        image: nginx:1.21   # v1 version
+        image: nginx:1.19   # v1 version
         ports:
         - containerPort: 80
         lifecycle:
